@@ -14,7 +14,9 @@ free to open an issue at <https://github.com/rougier/numpy-100>
 
 (**hint**: import … as …)
 
-
+```{python}
+import numpy as np
+```
 
 #### 2. Print the numpy version and the configuration (★☆☆) 
 
