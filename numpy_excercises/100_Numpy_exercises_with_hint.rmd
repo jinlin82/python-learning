@@ -647,139 +647,276 @@ print(sliding(Z, n=3))
 
 (**hint**: from numpy.lib import stride\_tricks)
 
-
+```{python}
+from numpy.lib import stride_tricks
+def rolling(a, window):
+    shape = (a.size - window + 1, window)
+    strides = (a.itemsize, a.itemsize)
+    return stride_tricks.as_strided(a, shape=shape, strides=strides)
+Z = rolling(np.arange(10), 3)
+print (Z)
+```
 
 #### 77. How to negate a boolean, or to change the sign of a float inplace? (★★★) 
 
 (**hint**: np.logical_not, np.negative)
 
+```{python}
+Z = np.random.randint(0,2,100)
+np.logical_not(Z, out=Z)
 
+Z = np.random.uniform(-1.0,1.0,100)
+np.negative(Z, out=Z)
+```
 
 #### 78. Consider 2 sets of points P0,P1 describing lines (2d) and a point p, how to compute distance from p to each line i  (P0\[i\],P1\[i\])? (★★★)
 
+```{python}
+def distance(P0, P1, p):
+    T = P1 - P0
+    L = (T**2).sum(axis=1)
+    U = -((P0[:,0]-p[...,0])*T[:,0] + (P0[:,1]-p[...,1])*T[:,1]) / L
+    U = U.reshape(len(U),1)
+    D = P0 + U*T - p
+    return np.sqrt((D**2).sum(axis=1))
 
+P0 = np.random.uniform(-10,10,(10,2))
+P1 = np.random.uniform(-10,10,(10,2))
+p  = np.random.uniform(-10,10,( 1,2))
+print(distance(P0, P1, p))
+```
 
 #### 79. Consider 2 sets of points P0,P1 describing lines (2d) and a set of points P, how to compute distance from each point j (P\[j\]) to each line i (P0\[i\],P1\[i\])? (★★★)
 
-
+```{python}
+P0 = np.random.uniform(-10, 10, (10,2))
+P1 = np.random.uniform(-10,10,(10,2))
+p = np.random.uniform(-10, 10, (10,2))
+print(np.array([distance(P0,P1,p_i) for p_i in p]))
+```
 
 #### 80. Consider an arbitrary array, write a function that extract a subpart with a fixed shape and centered on a given element (pad with a `fill` value when necessary) (★★★) 
 
 (**hint**: minimum, maximum)
 
+```{python}
 
+```
 
 #### 81. Consider an array Z = \[1,2,3,4,5,6,7,8,9,10,11,12,13,14\], how to generate an array R = \[\[1,2,3,4\], \[2,3,4,5\], \[3,4,5,6\], ..., \[11,12,13,14\]\]? (★★★) 
 
 (**hint**: stride\_tricks.as\_strided)
 
-
+```{python}
+Z = np.arange(1,15,dtype=np.uint32)
+R = stride_tricks.as_strided(Z,(11,4),(4,4))
+print(R)
+```
 
 #### 82. Compute a matrix rank (★★★) 
 
 (**hint**: np.linalg.svd)
 
-
+```{python}
+Z = np.random.uniform(0,1,(10,10))
+U, S, V = np.linalg.svd(Z) # Singular Value Decomposition
+rank = np.sum(S > 1e-10)
+print (rank)
+```
 
 #### 83. How to find the most frequent value in an array? 
 
 (**hint**: np.bincount, argmax)
 
+```{python}
 
+Z = np.random.randint(0,10,50)
+print (np.bincount(Z).argmax())
+```
 
 #### 84. Extract all the contiguous 3x3 blocks from a random 10x10 matrix (★★★) 
 
 (**hint**: stride\_tricks.as\_strided)
 
-
+```{python}
+Z = np.random.randint(0,5,(10,10))
+n = 3
+i = 1 + (Z.shape[0]-3)
+j = 1 + (Z.shape[1]-3)
+C = stride_tricks.as_strided(Z, shape=(i, j, n, n), strides=Z.strides + Z.strides)
+print (C)
+```
 
 #### 85. Create a 2D array subclass such that Z\[i,j\] == Z\[j,i\] (★★★) 
 
 (**hint**: class method)
 
+```{python}
 
+```
 
 #### 86. Consider a set of p matrices wich shape (n,n) and a set of p vectors with shape (n,1). How to compute the sum of of the p matrix products at once? (result has shape (n,1)) (★★★) 
 
 (**hint**: np.tensordot)
 
-
+```{python}
+p, n = 10, 20
+M = np.ones((p,n,n))
+V = np.ones((p,n,1))
+S = np.tensordot(M, V, axes=[[0, 2], [0, 1]])
+print (S)
+```
 
 #### 87. Consider a 16x16 array, how to get the block-sum (block size is 4x4)? (★★★) 
 
 (**hint**: np.add.reduceat)
 
-
+```{python}
+Z = np.ones((16,16))
+k = 4
+S = np.add.reduceat(np.add.reduceat(Z, np.arange(0, Z.shape[0], k), axis=0),
+                                       np.arange(0, Z.shape[1], k), axis=1)
+print (S)
+```
 
 #### 88. How to implement the Game of Life using numpy arrays? (★★★)
 
+```{python}
 
+```
 
 #### 89. How to get the n largest values of an array (★★★) 
 
 (**hint**: np.argsort | np.argpartition)
 
+```{python}
+Z = np.arange(10000)
+np.random.shuffle(Z)
+n = 5
 
+print (Z[np.argsort(Z)[-n:]])
+
+print (Z[np.argpartition(Z,-n)[-n:]])
+```
 
 #### 90. Given an arbitrary number of vectors, build the cartesian product (every combinations of every item) (★★★) 
 
 (**hint**: np.indices)
 
-
+```{python}
+np.set_printoptions(threshold=np.nan)
+Z = np.zeros((16,16))
+print(Z)
+```
 
 #### 91. How to create a record array from a regular array? (★★★) 
 
 (**hint**: np.core.records.fromarrays)
 
-
+```{python}
+Z = np.array([("Hello", 2.5, 3),
+              ("World", 3.6, 2)])
+R = np.core.records.fromarrays(Z.T, 
+                               names='col1, col2, col3',
+                               formats = 'S8, f8, i8')
+print(R)
+```
 
 #### 92. Consider a large vector Z, compute Z to the power of 3 using 3 different methods (★★★) 
 
 (**hint**: np.power, \*, np.einsum)
 
-
+```{python}
+x = np.random.rand()
+np.power(x,3)
+ 
+x*x*x
+ 
+np.einsum('i,i,i->i',x,x,x)
+```
 
 #### 93. Consider two arrays A and B of shape (8,3) and (2,2). How to find rows of A that contain elements of each row of B regardless of the order of the elements in B? (★★★) 
 
 (**hint**: np.where)
 
-
+```{python}
+A = np.random.randint(0,5,(8,3))
+B = np.random.randint(0,5,(2,2))
+ 
+C = (A[..., np.newaxis, np.newaxis] == B)
+rows = np.where(C.any((3,1)).all(1))[0]
+print (rows)
+```
 
 #### 94. Considering a 10x3 matrix, extract rows with unequal values (e.g. \[2,2,3\]) (★★★)
 
-
+```{python}
+Z = np.random.randint(0,5,(10,3))
+print (Z)
+U = Z[Z.max(axis=1) != Z.min(axis=1),:]
+print (U)
+```
 
 #### 95. Convert a vector of ints into a matrix binary representation (★★★) 
 
 (**hint**: np.unpackbits)
 
-
+```{python}
+I = np.array([0, 1, 2, 3, 15, 16, 32, 64, 128], dtype=np.uint8)
+print(np.unpackbits(I[:, np.newaxis], axis=1))
+```
 
 #### 96. Given a two dimensional array, how to extract unique rows? (★★★) 
 
 (**hint**: np.ascontiguousarray | np.unique)
 
-
+```{python}
+Z = np.random.randint(0,2,(6,3))
+T = np.ascontiguousarray(Z).view(np.dtype((np.void, Z.dtype.itemsize * Z.shape[1])))
+_, idx = np.unique(T, return_index=True)
+uZ = Z[idx]
+print (uZ)
+```
 
 #### 97. Considering 2 vectors A & B, write the einsum equivalent of inner, outer, sum, and mul function (★★★) 
 
 (**hint**: np.einsum)
 
+```{python}
 
+```
 
 #### 98. Considering a path described by two vectors (X,Y), how to sample it using equidistant samples (★★★)? 
 
 (**hint**: np.cumsum, np.interp)
 
+```{python}
 
+```
 
 #### 99. Given an integer n and a 2D array X, select from X the rows which can be interpreted as draws from a multinomial distribution with n degrees, i.e., the rows which only contain integers and which sum to n. (★★★) 
 
 (**hint**: np.logical\_and.reduce, np.mod)
 
-
+```{python}
+X = np.asarray([[1.0, 0.0, 3.0, 8.0],
+                [2.0, 0.0, 1.0, 1.0],
+                [1.5, 2.5, 1.0, 0.0]])
+n = 4
+M = np.logical_and.reduce(np.mod(X, 1) == 0, axis=-1)
+M &= (X.sum(axis=-1) == n)
+print(X[M])
+```
 
 #### 100. Compute bootstrapped 95% confidence intervals for the mean of a 1D array X (i.e., resample the elements of an array with replacement N times, compute the mean of each sample, and then compute percentiles over the means). (★★★) 
 
 (**hint**: np.percentile)
 
+```{python}
+X = np.random.randn(100) 
+N = 1000 
+idx = np.random.randint(0, X.size, (N, X.size))
+means = X[idx].mean(axis=1)
+confint = np.percentile(means, [2.5, 97.5])
+print(confint)
+```
