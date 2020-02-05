@@ -1,0 +1,3 @@
+[submodule "numpy_excercises/submitted/loutine"]
+	path = numpy_excercises/submitted/loutine
+	url = git@github.com:Loutine/Loutine_homework.git
