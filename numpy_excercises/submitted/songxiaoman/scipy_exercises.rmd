@@ -1,0 +1,79 @@
+### 第 1 题： 正态分布
+
+设 $X \sim N(2, 3^{2})$ ， 求：
+
+1. $0<X<5$ 的概率
+2. $X$ 0.025 右侧分位点
+3. 画出其概率密度曲线和累计分布函数曲线
+```{python}
+from scipy import stats
+import matplotlib.pyplot as plt 
+import numpy as np 
+x=np.linspace(-5,9, 100)
+rv1=stats.norm(2,3)#构建统计分布
+#1.$0<X<5$ 的概率
+rv1.cdf(5)-rv.cdf(0)
+#2.0.025右侧分位点
+rv1.ppf(1-0.025) 
+#3
+plt.plot(x, stats.norm.pdf(x, 2, 3), label='norm pdf')  #概率密度曲线
+plt.plot(x, stats.norm.cdf(x, 2, 3), label='norm cdf') #累计分布函数曲线
+plt.legend()
+```
+
+### 第 2 题： 卡方分布
+
+设 $X \sim \chi^{2}(5)$ ， 求：
+
+1. $1<X<5$ 的概率
+2. $X$ 0.025 右侧分位点
+3. 画出其概率密度曲线和累计分布函数曲线
+```{python}
+rv2=stats.chi2(5)
+#1.
+rv2.cdf(5)-rv2.cdf(1)
+#2.
+rv2.ppf(1-0.025)
+#3.
+x = np.linspace(0,20,100)
+plt.plot(x, stats.chi2.pdf(x,5),label='chi2 pdf') 
+plt.plot(x, stats.chi2.cdf(x,5),label='chi2 cdf') 
+plt.legend()
+```
+### 第 3 题： 二项分布
+
+设 $X \sim B(10, 0.3)$ ， 求：
+
+1. $X=3$ 的概率
+2. $X$ 0.025 右侧分位点
+3. 画出其概率分布率图和累计分布函数曲线
+```{python}
+rv3= stats.binom(10, 0.3) 
+#1
+rv3.pmf(3)
+#2
+rv3.ppf(1-0.025)
+#3. 
+x=np.arange(stats.binom.ppf(0.01, 10, 0.3), stats.binom.ppf (0.99, 10, 0.3)) 
+plt.vlines(x, 0, stats.binom.pmf(x, 10, 0.3), colors='b', lw=5,label='binom pmf') 
+plt.plot(x,stats.binom.cdf(x, 10, 0.3),label='binom cdf')
+plt.legend()
+```
+### 第 4 题： 核密度估计
+
+设 $X \sim N(2, 3^{2})$ ， 求：
+
+1. 生成1000个随机数字（np.random)
+2. 使用核方法估计随机数字的密度函数并画出其曲线
+3. 添加 $X \sim N(2, 3^{2})$ 的密度曲线
+```{python}
+#1.
+data=np.random.normal(2,3,1000)
+#2-3
+xmin,xmax=min(data),max(data)
+x=np.linspace(xmin,xmax,1000)
+density=stats.gaussian_kde(data)
+plt.plot(x, density(x),label='kde')
+plt.plot(x, stats.norm.pdf(x, 2, 3), label='norm pdf') 
+plt.legend()
+```
