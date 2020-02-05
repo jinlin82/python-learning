@@ -69,11 +69,12 @@ rv2 = stats.binom(10, 0.3)
 ans1 = rv2.pmf(3)
 #120*(0.3)**3*(0.7)**7
 print(ans1)
+
 ans2 = rv2.ppf(1 - 0.025)
 print(ans2)
 
 fig, axes = plt.subplots(1, 2)
-x = np.arange(rv2.ppf(0.01), rv2.ppf(0.99))
+x = np.arange(12)
 axes[0].plot(x, rv2.pmf(x))
 axes[0].set_title("Probability distribution rate")
 axes[1].plot(x, rv2.cdf(x))
