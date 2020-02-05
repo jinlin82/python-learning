@@ -246,51 +246,66 @@ y[2]<=y[1]
 (**hint**: np.sum)
 
 
-```python
+```{python}
 # Author: Jake VanderPlas
 
-print(sum(range(5),-1))
+print(sum(range(5),-1)) #10
 from numpy import *
-print(sum(range(5),-1))
+  print(sum(range(5),-1))#10
 ```
 
 #### 27. Consider an integer vector Z, which of these expressions are legal? (★☆☆)
 
 
-```python
-Z**Z
-2 << Z >> 2
+```{python}
+import numpy as np
+Z=np.arange(5)
+Z**Z 
+2 << Z >> 2 #2的二进制左移Z然后右移2位
 Z <- Z
 1j*Z
 Z/1/1
-Z<Z>Z
+Z<Z>Z  #不合
 ```
 
 #### 28. What are the result of the following expressions?
 
 
-```python
-np.array(0) / np.array(0)
-np.array(0) // np.array(0)
-np.array([np.nan]).astype(int).astype(float)
+```{python}
+np.array(0) / np.array(0)#除法
+np.array(0) // np.array(0)#整数除法
+np.array([np.nan]).astype(int).astype(float) #变换类型
 ```
 
 #### 29. How to round away from zero a float array ? (★☆☆) 
 
 (**hint**: np.uniform, np.copysign, np.ceil, np.abs)
-
+```{python}
+Z = np.random.uniform(-6,6,5) #均匀取值
+print(np.copysign(np.ceil(np.abs(Z)), Z))
+```
 
 
 #### 30. How to find common values between two arrays? (★☆☆) 
 
 (**hint**: np.intersect1d)
+```{python}
+x1=np.array([1,2,3])
+x2=np.array([2,3,4,5])
+print(np.intersect1d(x1,x2)) #取交集
+```
 
 
 
 #### 31. How to ignore all numpy warnings (not recommended)? (★☆☆) 
 
 (**hint**: np.seterr, np.errstate)
-
+```{python}
+np.seterr(all="ignore")
+np.array([1])/ 0
+np.errstate(divide='ignore')
+np.array([1])/ 0
+```
 
 
 #### 32. Is the following expressions true? (★☆☆) 
@@ -298,115 +313,205 @@ np.array([np.nan]).astype(int).astype(float)
 (**hint**: imaginary number)
 
 
-```python
+```{python}
+np.sqrt(-1) #nan
+np.emath.sqrt(-1) #虚数
 np.sqrt(-1) == np.emath.sqrt(-1)
 ```
 
 #### 33. How to get the dates of yesterday, today and tomorrow? (★☆☆) 
 
 (**hint**: np.datetime64, np.timedelta64)
-
+```{python}
+print('today is ',np.datetime64('today', 'D'))
+print('yesterday is',np.datetime64('today', 'D') - np.timedelta64(1, 'D'))
+print('tomorrow is',np.datetime64('today', 'D') + np.timedelta64(1, 'D'))
+```
 
 
 #### 34. How to get all the dates corresponding to the month of July 2016? (★★☆) 
 
 (**hint**: np.arange(dtype=datetime64\['D'\]))
-
+```{python}
+print(np.arange('2016-07', '2016-08', dtype='datetime64[D]'))
+```
 
 
 #### 35. How to compute ((A+B)\*(-A/2)) in place (without copy)? (★★☆) 
 
 (**hint**: np.add(out=), np.negative(out=), np.multiply(out=), np.divide(out=))
 
-
+```{python}
+A = np.ones(3)*1
+B = np.ones(3)*2
+C = np.ones(3)*3
+np.add(A,B,out=B)
+np.divide(A,2,out=A)
+np.negative(A,out=A)
+np.multiply(A,B,out=A)
+```
 
 #### 36. Extract the integer part of a random array using 5 different methods (★★☆) 
 
 (**hint**: %, np.floor, np.ceil, astype, np.trunc)
+```{python}
+Z = np.random.uniform(0,10,10)
+print (Z - Z%1)
+print (np.floor(Z))
+print (np.ceil(Z)-1)
+print (Z.astype(int))
+print (np.trunc(Z))
+```
 
 
 
 #### 37. Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆) 
 
 (**hint**: np.arange)
-
+```{python}
+Z = np.zeros((5,5))
+Z += np.arange(5)
+print(Z)
+```
 
 
 #### 38. Consider a generator function that generates 10 integers and use it to build an array (★☆☆) 
 
 (**hint**: np.fromiter)
-
+```{python}
+def generate():
+  for x in range(10):
+  yield x
+z = np.fromiter(generate(),dtype=float,count=-1)
+print(z)
+```
 
 
 #### 39. Create a vector of size 10 with values ranging from 0 to 1, both excluded (★★☆) 
 
 (**hint**: np.linspace)
-
+```{python}
+np.linspace(0,1,11,endpoint=False)[1:]
+```
 
 
 #### 40. Create a random vector of size 10 and sort it (★★☆) 
 
 (**hint**: sort)
-
+```{python}
+x = np.random.random(10)
+x.sort()
+print(x)
+```
 
 
 #### 41. How to sum a small array faster than np.sum? (★★☆) 
 
 (**hint**: np.add.reduce)
-
+```{python}
+np.add.reduce(np.random.random(10))
+```
 
 
 #### 42. Consider two random array A and B, check if they are equal (★★☆) 
 
 (**hint**: np.allclose, np.array\_equal)
-
+```{python}
+A = np.random.randint(0,2,5)
+B = np.random.randint(0,2,5)
+np.allclose(A,B) 
+np.array_equal(A,B)
+```
 
 
 #### 43. Make an array immutable (read-only) (★★☆) 
 
 (**hint**: flags.writeable)
-
+```{python}
+x = np.array([1,2,3])
+x.flags.writeable = False #只读
+x[0] = 1
+```
 
 
 #### 44. Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates (★★☆) 
 
 (**hint**: np.sqrt, np.arctan2)
-
+```{python}
+Z = np.random.random((10,2))
+X,Y = Z[:,0], Z[:,1]
+R = np.sqrt(X**2+Y**2)
+T = np.arctan2(Y,X)
+print(R)
+print(T)
+```
 
 
 #### 45. Create random vector of size 10 and replace the maximum value by 0 (★★☆) 
 
 (**hint**: argmax)
-
+```{python}
+x = np.random.random(10)
+x[x.argmax()] = 0
+print(x)
+```
 
 
 #### 46. Create a structured array with `x` and `y` coordinates covering the \[0,1\]x\[0,1\] area (★★☆) 
 
 (**hint**: np.meshgrid)
-
+```{python}
+Z = np.zeros((5,5), [('x',float),('y',float)])
+Z['x'], Z['y'] = np.meshgrid(np.linspace(0,1,5), np.linspace(0,1,5))
+print(Z)
+```
 
 
 ####  47. Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj)) 
 
 #####  (hint: np.subtract.outer)
-
+```{python}
+X = np.arange(8)
+Y = X+0.5
+C = 1.0 / np.subtract.outer(X, Y)
+print(np.linalg.det(C))
+print(C)
+```
 
 
 #### 48. Print the minimum and maximum representable value for each numpy scalar type (★★☆) 
 
 (**hint**: np.iinfo, np.finfo, eps)
-
+```{python}
+for dtype in [np.int8, np.int32, np.int64]:
+  print(np.iinfo(dtype).min)
+print(np.iinfo(dtype).max)
+for dtype in [np.float32, np.float64]:
+  print(np.finfo(dtype).min)
+print(np.finfo(dtype).max)
+print(np.finfo(dtype).eps)
+```
 
 
 #### 49. How to print all the values of an array? (★★☆) 
 
 (**hint**: np.set\_printoptions)
-
+```{python}
+np.set_printoptions(threshold=np.nan)
+x = np.ones((16,16))
+print(x)
+```
 
 
 #### 50. How to find the closest value (to a given scalar) in a vector? (★★☆) 
 
 (**hint**: argmin)
+```{python}
+Z = np.arange(100)
+v = np.random.uniform(0,100)
+index = (np.abs(Z-v)).argmin()
+print(Z[index])
+```
 
 
 
@@ -416,7 +521,7 @@ np.sqrt(-1) == np.emath.sqrt(-1)
 
 ```{python}
 mydtype = np.dtype([('position', [('x', np.int8), ('y', np.int8)])
-              ,('color', [('r', np.int16), ('g', np.int16),('b', np.int16)])])
+                    ,('color', [('r', np.int16), ('g', np.int16),('b', np.int16)])])
 print(np.zeros((2, 3), mydtype))
 ```
 
@@ -449,7 +554,7 @@ print(x)
 ```
 1, 2, 3, 4, 5
 6,  ,  , 7, 8
- ,  , 9,10,11
+,  , 9,10,11
 ```
 ```{python}
 from io import StringIO
@@ -466,9 +571,9 @@ print(np.genfromtxt(s,delimiter=','))
 ```{python}
 a = np.array([[1, 2], [3, 4]])
 for index, x in np.ndenumerate(a):
-    print(index, x)
+  print(index, x)
 for index in np.ndindex(a.shape):
-    print(index)
+  print(index)
 ```
 
 #### 56. Generate a generic 2D Gaussian-like array (★★☆) 
@@ -542,7 +647,7 @@ print(x.ravel()[(np.abs(x) - m).argmin()])
 x = np.random.normal(size=(3, 1))
 y = x.T
 for x, y, z in np.nditer([x, y, None]):
-    z[...] = x + y
+  z[...] = x + y
 print(z)
 ```
 
@@ -553,14 +658,14 @@ print(z)
 
 ```{python}
 class NamedArray(np.ndarray):
-    def __new__(cls, array, name="no name"):
-        obj = np.asarray(array).view(cls)
-        obj.name = name
-        return obj
+  def __new__(cls, array, name="no name"):
+  obj = np.asarray(array).view(cls)
+obj.name = name
+return obj
 
-    def __array_finalize__(self, obj):
-        if obj is None:return
-        self.info = getattr(obj, 'name', "no name")
+def __array_finalize__(self, obj):
+  if obj is None:return
+self.info = getattr(obj, 'name', "no name")
 Z = NamedArray(np.arange(10), "range_10")
 print (Z.name)
 ```
@@ -694,7 +799,7 @@ print(G)
 C = np.array([0, 2, 1, 3, 0, 0, 1])
 A = np.array([])
 for i, c in enumerate(C):
-    A = np.append(A, np.ones(c)*(i))
+  A = np.append(A, np.ones(c)*(i))
 A = A.astype(int)   
 print(A)
 print((np.bincount(A) == C).all())
@@ -708,9 +813,9 @@ print((np.bincount(A) == C).all())
 
 ```{python}
 def sliding(a, n=3):
-    ret = np.cumsum(a, dtype=float)
-    ret[n:] = ret[n:] - ret[:-n]
-    return ret[n - 1:] / n
+  ret = np.cumsum(a, dtype=float)
+ret[n:] = ret[n:] - ret[:-n]
+return ret[n - 1:] / n
 Z = np.arange(10)
 print(sliding(Z, n=3))
 ```
@@ -722,9 +827,9 @@ print(sliding(Z, n=3))
 ```{python}
 from numpy.lib import stride_tricks
 def rolling(a, window):
-    shape = (a.size - window + 1, window)
-    strides = (a.itemsize, a.itemsize)
-    return stride_tricks.as_strided(a, shape=shape, strides=strides)
+  shape = (a.size - window + 1, window)
+strides = (a.itemsize, a.itemsize)
+return stride_tricks.as_strided(a, shape=shape, strides=strides)
 Z = rolling(np.arange(10), 3)
 print (Z)
 ```
@@ -745,12 +850,12 @@ np.negative(Z, out=Z)
 
 ```{python}
 def distance(P0, P1, p):
-    T = P1 - P0
-    L = (T**2).sum(axis=1)
-    U = -((P0[:,0]-p[...,0])*T[:,0] + (P0[:,1]-p[...,1])*T[:,1]) / L
-    U = U.reshape(len(U),1)
-    D = P0 + U*T - p
-    return np.sqrt((D**2).sum(axis=1))
+  T = P1 - P0
+L = (T**2).sum(axis=1)
+U = -((P0[:,0]-p[...,0])*T[:,0] + (P0[:,1]-p[...,1])*T[:,1]) / L
+U = U.reshape(len(U),1)
+D = P0 + U*T - p
+return np.sqrt((D**2).sum(axis=1))
 
 P0 = np.random.uniform(-10,10,(10,2))
 P1 = np.random.uniform(-10,10,(10,2))
@@ -847,7 +952,7 @@ print (S)
 Z = np.ones((16,16))
 k = 4
 S = np.add.reduceat(np.add.reduceat(Z, np.arange(0, Z.shape[0], k), axis=0),
-                                       np.arange(0, Z.shape[1], k), axis=1)
+                    np.arange(0, Z.shape[1], k), axis=1)
 print (S)
 ```
 
@@ -901,9 +1006,9 @@ print(R)
 ```{python}
 x = np.random.rand()
 np.power(x,3)
- 
+
 x*x*x
- 
+
 np.einsum('i,i,i->i',x,x,x)
 ```
 
@@ -914,7 +1019,7 @@ np.einsum('i,i,i->i',x,x,x)
 ```{python}
 A = np.random.randint(0,5,(8,3))
 B = np.random.randint(0,5,(2,2))
- 
+
 C = (A[..., np.newaxis, np.newaxis] == B)
 rows = np.where(C.any((3,1)).all(1))[0]
 print (rows)
