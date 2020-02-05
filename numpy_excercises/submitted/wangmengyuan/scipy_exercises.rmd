@@ -1,0 +1,76 @@
+### 第 1 题： 正态分布
+
+设 $X \sim N(2, 3^{2})$ ， 求：
+
+1. $0<X<5$ 的概率
+2. $X$ 0.025 右侧分位点
+3. 画出其概率密度曲线和累计分布函数曲线
+```{python}
+import matplotlib.pyplot as plt
+from scipy import stats
+import numpy as np
+from scipy import stats
+rv1=stats.norm(2,3)
+rv1
+print('P(0 < x < 5)=',stats.norm(2,3).cdf(5)-stats.norm(2,3).cdf(0))
+print('X0.025的右侧分位点 =',rv1.ppf(0.975))
+x=np.linspace(-6, 10, 100)
+print('概率密度函数曲线:\n',plt.plot(x, stats.norm(2,3).pdf(x), label='norm pdf'))
+print('累积分布函数曲线：\n',plt.plot(x, stats.norm(2,3).cdf(x), label='norm pdf'))
+
+```
+
+### 第 2 题： 卡方分布
+
+设 $X \sim \chi^{2}(5)$ ， 求：
+
+1. $1<X<5$ 的概率
+2. $X$ 0.025 右侧分位点
+3. 画出其概率密度曲线和累计分布函数曲线
+```{python}
+rv2=stats.chi2(5)
+rv2
+print('P(1 < x < 5)=',stats.chi2(5).cdf(5)-stats.chi2(5).cdf(1))
+print('X0.025的右侧分位点 =',rv2.ppf(0.975))
+x=np.linspace(0, 10, 100)
+print('概率密度函数曲线:\n',plt.plot(x, stats.chi2(5).pdf(x), label='norm pdf'))
+print('累积分布函数曲线：\n',plt.plot(x, stats.chi(2).cdf(x), label='norm pdf'))
+```
+### 第 3 题： 二项分布
+
+设 $X \sim B(10, 0.3)$ ， 求：
+
+1. $X=3$ 的概率
+2. $X$ 0.025 右侧分位点
+3. 画出其概率分布率图和累计分布函数曲线
+```{python}
+rv3=stats.binom(10,0.3)
+rv3
+print("p(x<=3) = {}".format(stats.binom.cdf(k=3,p=0.3,n=10)))
+print('X0.025的右侧分位点 =',rv3.ppf(0.975))
+x=np.arange(11)
+print('概率密度函数曲线:\n',plt.plot(x, stats.binom(10,0.3).pmf(x), label='norm pdf'))
+print('累积分布函数曲线：\n',plt.plot(x, stats.binom(10,0.3).cdf(x), label='norm pdf'))
+```
+### 第 4 题： 核密度估计
+
+设 $X \sim N(2, 3^{2})$ ， 求：
+
+1. 生成1000个随机数字（np.random)
+2. 使用核方法估计随机数字的密度函数并画出其曲线
+3. 添加 $X \sim N(2, 3^{2})$ 的密度曲线
+```{python}
+from sklearn.neighbors import KernelDensity
+np.random.seed(1)
+xn=np.random.normal(0,1,1000)
+print('1000个随机数字：\n',xn)
+gkde = stats.gaussian_kde(xn)
+ind = np.linspace(np.min(xn), np.max(xn), 1000)
+kdepdf = gkde.evaluate(ind)
+plt.plot(ind, kdepdf, label='Kernel Density Estimation', color="g")
+plt.plot(ind, stats.norm(2,3).pdf(ind), label='norm pdf')
+plt.legend()
+plt.xticks()
+plt.show()
+
+```
