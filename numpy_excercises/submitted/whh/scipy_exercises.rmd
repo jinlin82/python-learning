@@ -96,11 +96,14 @@ x=np.random.normal(2,3,1000)
 2. 使用核方法估计随机数字的密度函数并画出其曲线
 ```{python}
 import pandas as pd
+from scipy import stats
 X=pd.DataFrame(x)
-fig, ax1= plt.subplots(1, 1)
-X.plot(kind="kde",label="核密度图",xlim=[np.min(x),np.max(x)],title='核密度图')
+fig, (ax1,ax2)= plt.subplots(2, 1)
+kde = stats.gaussian_kde(x)
 ax1.plot(np.sort(x),norm.pdf(np.sort(x),2,3))
 ax1.set_title('密度曲线')
+ax2.plot(np.sort(x),kde(np.sort(x)))
+ax2.set_title('核密度图')
 ```
 3. 添加 $X \sim N(2, 3^{2})$ 的密度曲线
 
