@@ -1,9 +1,3 @@
-[submodule "numpy_exercises/submitted/loutine"]
-	path = numpy_exercises/submitted/loutine
-	url = https://github.com/Loutine/Loutine_homework.git
-[submodule "numpy_exercises/submitted/yihancao"]
-	path = numpy_exercises/submitted/yihancao
-	url = https://github.com/YihanCao123/Python-homework
 [submodule "submitted/luotian"]
 	path = submitted/luotian
 	url = https://github.com/Loutine/Loutine_homework.git
