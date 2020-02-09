@@ -19,8 +19,7 @@
 	 + 在打开的cmd窗口中输入(一行一行输入并运行）
 ```
 for /f "usebackq tokens=2,*" %A in (`reg query HKCU\Environment /v PATH`) do set my_user_path=%B
-set "gitpath=%~dp0"
-setx PATH "%gitpath%;%my_user_path%"
+setx PATH "%cd%;%my_user_path%"
 ```
    4. 配置 `.gitconfig`, 按下快捷键 `win+R` ，在弹出的窗口中输入 `CMD`，之后在弹出
       的窗口中输入：
