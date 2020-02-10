@@ -8,7 +8,7 @@
    - 下载地址：链接：https://pan.baidu.com/s/1qf3rmdqk3COdGPA7D312PA 提取码： 5fq3
    - 解压到某文件夹（路径中不要出现中文，空格等）里面，运行里面的 code.exe 即可，
      如：C:\Worktools\VSCode-win32-x64-1.42.0\Code.exe
-   - 添加右键快捷键: 记事本打开项目中(先使用下面方法克隆项目)的 `vsCode_addright.reg` 文件，把其中的
+   - 添加右键快捷键: 记事本打开 `python-learning` 项目中(先使用下面方法克隆项目)的 `vsCode_addright.reg` 文件，把其中的
      `C:\\Worktools\\VSCode-win32-x64-1.42.0\\Code.exe` 全部替换为自己
      `Code.exe` 的位置（注意要用双斜杠），保存后双击运行`vsCode_addright.reg` 文件.
 3. 安装并配置 git
@@ -16,7 +16,8 @@
    - 解压到某文件夹（路径中不要出现中文，空格等）里面, 如 `C:\Worktools\git`
    - 设置 `PATH` 环境变量，增加如 `C:\Worktools\git\bin`,方法：
 	 + 在解压后的 `git\bin` 文件夹里面，按住 shift 键， 右键点击空白处，选择 "`在此处打开命令`"
-	 + 在打开的cmd窗口中输入(一行一行输入并运行）
+	 + 在打开的cmd窗口中输入(一行一行输入并运行）（注：如果打开的是 `Powershell`，
+       先运行 `cmd` 命令，再一条一条运行以下语句）
 ```
 for /f "usebackq tokens=2,*" %A in (`reg query HKCU\Environment /v PATH`) do set my_user_path=%B
 setx PATH "%cd%;%my_user_path%"
@@ -36,7 +37,7 @@ git config --global user.name "Jin Lin"
 
 ### 如何克隆此项目中所有内容
 
-1. 进入要拷贝到的文件夹
+1. 进入要拷贝到的目标文件夹
 2. 按住 shift 键， 右键点击空白处，选择 "`在此处打开命令`"
 3. 在打开的cmd窗口中输入 `git clone
    https://github.com/jinlin82/python-learning`, 等待完成即可.
