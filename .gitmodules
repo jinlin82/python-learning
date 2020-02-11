@@ -7,3 +7,6 @@
 [submodule "submitted/zhaokaili"]
 	path = submitted/zhaokaili
 	url = https://github.com/zhaokaili1/zkl-python-homework
+[submodule "submitted/zhangyuanbo"]
+	path = submitted/zhangyuanbo
+	url = https://github.com/zhangyuanbo715/zyb-python-homework
