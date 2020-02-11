@@ -10,3 +10,6 @@
 [submodule "submitted/zhangyuanbo"]
 	path = submitted/zhangyuanbo
 	url = https://github.com/zhangyuanbo715/zyb-python-homework
+[submodule "submitted/songxiaoman"]
+	path = submitted/songxiaoman
+	url = https://github.com/Songxiaoman28/SXM-python-homework
