@@ -13,6 +13,6 @@
 [submodule "submitted/songxiaoman"]
 	path = submitted/songxiaoman
 	url = https://github.com/Songxiaoman28/SXM-python-homework
-[submodule "submitted/mengyuan0526"]
-	path = submitted/mengyuan0526
+[submodule "submitted/wangmengyuan"]
+	path = submitted/wangmengyuan
 	url = https://github.com/mengyuan0526/wmy-python-homework
