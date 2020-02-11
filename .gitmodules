@@ -16,3 +16,6 @@
 [submodule "submitted/wangmengyuan"]
 	path = submitted/wangmengyuan
 	url = https://github.com/mengyuan0526/wmy-python-homework
+[submodule "submitted/whh"]
+	path = submitted/whh
+	url = https://github.com/apricoteriop456/whh-python-homework
