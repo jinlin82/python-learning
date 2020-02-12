@@ -48,3 +48,10 @@ git config --global user.name "Jin Lin"
      令`"
    - 在打开的cmd窗口中输入 `git pull`
 2. 方法 2: 使用 vscode 的 git 功能
+
+## Vscode 使用方法
+
+### 如何使用 Vscode 打开项目
+
+### 如何使用 Vscode 打开和运行 python程序文件（.py 文件），jupyter notebook 文件 （.ipynb) 文件
+
