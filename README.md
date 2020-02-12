@@ -58,10 +58,10 @@ git config --global user.name "Jin Lin"
    
 ### 如何使用 Vscode 打开和运行 python程序文件（.py 文件），jupyter notebook 文件 （.ipynb) 文件
 1. 打开和运行 python程序文件（.py 文件）
-   - 右键点击python程序文件（.py文件），选择'Open Folder as VS Code Project'打开,或者直接在Vscode打开的项目里点击.py文件
+   - 右键点击python程序文件（.py文件），选择'Edit with VS Code'打开,或者直接在Vscode打开的项目里点击.py文件
    - 光标放在代码所在行或者选中需要运行的代码，按‘Ctrl+Enter’或‘shift+enter’快捷键即可运行。
 2. 打开和运行jupyter notebook 文件 （.ipynb) 文件
-   - 右键点击jupyter notebook程序文件（.ipynb文件），选择'Open Folder as VS Code Project'打开,或者直接在Vscode打开的项目里点击.ipynb文件
+   - 右键点击jupyter notebook程序文件（.ipynb文件），选择'Edit with VS Code'打开,或者直接在Vscode打开的项目里点击.ipynb文件
    - 运行.ipynb文件,按‘Ctrl+Enter’或‘shift+enter’快捷键可以逐行的运行代码；运行单个代码块，直接点击该代码块左上方的三角符号图标运行;运行整个.ipynb文件，点击最上面左边的两个三角形组成的图标运行。
 
 
