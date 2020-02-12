@@ -51,7 +51,17 @@ git config --global user.name "Jin Lin"
 
 ## Vscode 使用方法
 
+
 ### 如何使用 Vscode 打开项目
 
+1. 可以右键点击该项目，选择用Vscode打开；
+
+2. 也可以先打开code.exe,点击“文件”——“将文件夹添加到工作区”，然后选择要打开的项目即可（Vscode为中文版本情况下）。
+   
 ### 如何使用 Vscode 打开和运行 python程序文件（.py 文件），jupyter notebook 文件 （.ipynb) 文件
+
+1. 右键点击python程序文件（.py文件），选择使用Vscode打开。要在Vscode里面运行.py文件，要保证Vscode里面有python插件（没有的话，可以进入主界面之后按Ctrl + p，输入：ext install python，下载第一个即可）。
+接着要在Vscode中运行Python代码需要修改tasks.json 配置代码（使用快捷键“ ctrl+shifit+p”打开搜索栏。输入 “Tasks: Configure Task Runner”打开tasks.json），配置完成后使用快捷键“ctrl+shift+B”即可运行.py文件。
+
+2. 右键点击jupyter notebook程序文件（.ipynb文件），选择使用Vscode打开。运行jupyter notebook文件（.ipynb文件) 需要配置anaconda、jupyter环境,安装anaconda，安装步骤见上面“环境配置”，当安装好 Python 插件最新开发版后，使用快捷键 “Ctrl+Shift+P” 调出 “Command Palette”，然后输入 "Python: Create New Blank Jupyter Notebook" ，就能创建一个新的 Jupyter Notebook。
 
