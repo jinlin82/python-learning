@@ -61,4 +61,4 @@ git config --global user.name "Jin Lin"
    - 光标放在代码所在行或者选中需要运行的代码，按 `Ctrl+Enter` 快捷键即可运行。
 2. 打开和运行jupyter notebook 文件 （.ipynb) 文件
    - 右键点击jupyter notebook程序文件（.ipynb文件），选择 `Edit with VS Code` 打开,或者直接在Vscode打开的项目里点击.ipynb文件
-   - 运行.ipynb文件,按 `Ctrl+Enter` 快捷键可以运行代码；运行单个代码块，直接点击该代码块左上方的三角符号图标运行;运行整个.ipynb文件，点击最上面左边的两个三角形组成的图标运行。
+   - 运行.ipynb文件,按 `Ctrl+Enter` 快捷键可以运行代码；也可以直接点击该代码块左上方的三角符号图标运行代码块;运行整个.ipynb文件，点击最上面左边的两个三角形组成的图标运行。
