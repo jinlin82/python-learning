@@ -64,4 +64,3 @@ git config --global user.name "Jin Lin"
    - 运行.ipynb文件,按 `Ctrl+Enter` 快捷键可以运行代码；也可以直接点击
      该代码块左上方的三角符号图标 ▶️ 运行单个代码块，;运行整个.ipynb文件，点击最上面左边的
      两个三角形组成的图标运行。
-
