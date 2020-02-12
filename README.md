@@ -57,7 +57,7 @@ git config --global user.name "Jin Lin"
 2. 也可以先打开VSCode-win32-x64-1.42.0文件夹里面的code.exe,点击“文件”——“将文件夹添加到工作区”，然后选择要打开的项目即可（Vscode为中文版本情况下）。
    
 ### 如何使用 Vscode 打开和运行 python程序文件（.py 文件），jupyter notebook 文件 （.ipynb) 文件
- 1. 右键点击python程序文件（.py文件）或jupyter notebook程序文件（.ipynb文件），选择使用“Open Folder as VS Code Project”打开。“ctrl”+“enter”即可运行。
+ 1. 右键点击python程序文件（.py文件）或jupyter notebook程序文件（.ipynb文件），选择使用“Open Folder as VS Code Project”打开。将光标放在所在的代码行“ctrl+enter”或者“shift+enter”即可运行。jupyter notebook程序文件（.ipynb文件）里面也可以点击左上角的“双三角”形状的符号即可运行所有代码。
 
 
 
