@@ -49,6 +49,7 @@ git config --global user.name "Jin Lin"
    - 在打开的cmd窗口中输入 `git pull`
 2. 方法 2: 使用 vscode 的 git 功能
 
+
 ## Vscode 使用方法
 
 ### 如何使用 Vscode 打开项目
@@ -62,5 +63,5 @@ git config --global user.name "Jin Lin"
 2. 打开和运行jupyter notebook 文件 （.ipynb) 文件
    - 右键点击jupyter notebook程序文件（.ipynb文件），选择 `Edit with VS Code` 打开,或者直接在Vscode打开的项目里点击.ipynb文件
    - 运行.ipynb文件,按 `Ctrl+Enter` 快捷键可以运行代码；也可以直接点击
-     该代码块左上方的三角符号图标 ▶️ 运行单个代码块，;运行整个.ipynb文件，点击最上面左边的
+     该代码块左上方的三角符号图标运行单个代码块，;运行整个.ipynb文件，点击最上面左边的
      两个三角形组成的图标运行。
