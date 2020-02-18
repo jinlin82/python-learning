@@ -13,9 +13,11 @@
      `Code.exe` 的位置（注意要用双斜杠），保存后双击运行`vsCode_addright.reg` 文件.
 3. 安装并配置 git
    - 下载地址：链接：https://pan.baidu.com/s/1E2Z0cijp1x2PIxqn7oVn9A 提取码： qi9o
-   - 解压到某文件夹（路径中不要出现中文，空格等）里面, 如 `C:\Worktools\git`
+   - 解压到想要保存的文件夹（路径中不要出现中文，空格等）里面, 如 `C:\Worktools\git`
    - 设置 `PATH` 环境变量，增加如 `C:\Worktools\git\bin`,方法：
-	 + 在解压后的 `git\bin` 文件夹里面，按住 shift 键， 右键点击空白处，选择 "`在此处打开命令`"
+	 + 进入解压后的 `git\bin` 文件夹里面，键盘敲入 `Alt+d cmd Enter` （`Alt`,
+       `Enter`是键盘上面的按键, `+` 表示同时按)，进入cmd，也可以按住 shift 键，
+       右键点击空白处，选择 "`在此处打开命令`"进入 `cmd`.
 	 + 在打开的cmd窗口中输入(一行一行输入并运行）（注：如果打开的是 `Powershell`，
        先运行 `cmd` 命令，再一条一条运行以下语句）
 ```
@@ -38,7 +40,8 @@ git config --global user.name "Jin Lin"
 ### 如何克隆此项目中所有内容
 
 1. 进入要拷贝到的目标文件夹
-2. 按住 shift 键， 右键点击空白处，选择 "`在此处打开命令`"
+2. 键盘敲入 `Alt+d cmd Enter` 或者 按住 shift 键， 右键点击空白处，选择 "`在此处
+   打开命令`" 进入 `cmd`
 3. 在打开的cmd窗口中输入 `git clone
    https://github.com/jinlin82/python-learning`, 等待完成即可.
 
